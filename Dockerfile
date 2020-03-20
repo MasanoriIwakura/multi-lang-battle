@@ -6,5 +6,5 @@ RUN apt-get update && apt-get upgrade -y
 FROM base as c-lang
 
 RUN apt-get install -y apt-utils build-essential gcc
-
-COPY ./c-lang /app/c-lang
+COPY ./apps /apps
+WORKDIR apps/c-lang/

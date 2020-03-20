@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      target: c-lang
+    image: multi-lang-battle
+    tty: true
+    volumes:
+      - ./apps:/apps
+      - ./fixtures:/fixtures
