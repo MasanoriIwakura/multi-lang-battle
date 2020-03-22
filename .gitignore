@@ -1,4 +1,6 @@
 # c-lang
 *.out
-c-lang/*.csv
+apps/c-lang/*.csv
 
+# cpp
+apps/cpp/*.csv

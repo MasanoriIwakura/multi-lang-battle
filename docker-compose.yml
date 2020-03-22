@@ -1,12 +1,20 @@
-version: "3"
+version: "3.7"
 
 services:
-  app:
+  c-lang:
     build:
       context: .
       target: c-lang
-    image: multi-lang-battle
-    tty: true
+    image: multi-lang-battle-c-lang
+    command: 'make build_run'
     volumes:
-      - ./apps:/apps
-      - ./fixtures:/fixtures
+      - ./apps/c-lang:/apps/c-lang
+  
+  cpp:
+    build:
+      context: .
+      target: cpp
+    image: multi-lang-ba_ttle-cpp
+    command: 'make build_run'
+    volumes:
+      - ./apps/cpp:/apps/cpp

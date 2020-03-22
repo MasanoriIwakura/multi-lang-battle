@@ -5,5 +5,3 @@ build:
 
 run:
 	./main.out
-
-
