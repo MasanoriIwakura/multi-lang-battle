@@ -1,4 +1,13 @@
-C_CSV = apps/c-lang/csv
+build:
+	docker-compose build
 
-run_csv_c:
-	docker-compose run --rm app "gcc -o ${C_CSV}/main ${C_CSV}/main.c && ${C_CSV}/main"
+run_all: run_c run_cpp run_go
+
+run_c:
+	echo "** C-Lang **" && docker-compose run --rm c-lang && echo
+
+run_cpp:
+	echo "** C++ **" && docker-compose run --rm cpp && echo
+
+run_go:
+	echo "** Golang **" && docker-compose run --rm go && echo

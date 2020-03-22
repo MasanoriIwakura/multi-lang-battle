@@ -10,7 +10,8 @@ int main(void)
     double time, sum = 0;
     int count = 5;
 
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++)
+    {
         start = clock();
 
         char *fname = "/fixtures/sample.csv";
@@ -20,8 +21,9 @@ int main(void)
 
         const int SIZE = 1024;
         char buffer[SIZE];
-        while (fgets(buffer, SIZE, fp)) {
-            char* tmp = strdup(buffer);
+        while (fgets(buffer, SIZE, fp))
+        {
+            char *tmp = strdup(buffer);
             fprintf(ofp, "%s", tmp);
             free(tmp);
         }
@@ -30,12 +32,12 @@ int main(void)
         fclose(ofp);
 
         end = clock();
-        time = (double) (end - start) / CLOCKS_PER_SEC;
-        printf("Time Result: %.4f\n",  time);
+        time = (double)(end - start) / CLOCKS_PER_SEC;
+        printf("Time Result: %.4f\n", time);
         sum += time;
     }
 
-    printf("Average: %.4f\n", sum / count);
+    printf("C-lang Average: %.4f\n", sum / count);
 
     return 0;
 }

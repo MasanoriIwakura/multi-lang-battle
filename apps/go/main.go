@@ -36,5 +36,5 @@ func main() {
         fmt.Printf("Time Result: %.4f\n", result)
     }
 
-    fmt.Printf("Average: %.4f\n", sum / float64(count))
+    fmt.Printf("Golang Average: %.4f\n", sum / float64(count))
 }

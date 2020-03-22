@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
         sum += time;
     }
 
-    cout << "Average: ";
+    cout << "C++ Average: ";
     cout << fixed << setprecision(4) << sum / count << endl;
 
     return 0;
