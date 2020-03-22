@@ -18,3 +18,13 @@ WORKDIR /apps/c-lang/
 FROM c-common as cpp
 COPY ./apps/cpp /apps/cpp
 WORKDIR /apps/cpp/
+
+FROM base as go
+
+ENV GO_VERSION 1.14.1
+RUN apt-get install -y wget make && \
+    wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
+    tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
+ENV PATH $PATH:/usr/local/go/bin
+RUN go version
+WORKDIR /apps/go

@@ -6,15 +6,24 @@ services:
       context: .
       target: c-lang
     image: multi-lang-battle-c-lang
-    command: 'make build_run'
+    command: "make build_run"
     volumes:
       - ./apps/c-lang:/apps/c-lang
-  
+
   cpp:
     build:
       context: .
       target: cpp
-    image: multi-lang-ba_ttle-cpp
-    command: 'make build_run'
+    image: multi-lang-battle-cpp
+    command: "make build_run"
     volumes:
       - ./apps/cpp:/apps/cpp
+
+  go:
+    build:
+      context: .
+      target: go
+    image: multi-lang-battle-go
+    command: "make build_run"
+    volumes:
+      - ./apps/go:/apps/go

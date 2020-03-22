@@ -1,6 +1,9 @@
-# c-lang
-*.out
-apps/c-lang/*.csv
+# common
+sample.csv
 
+# c-lang
 # cpp
-apps/cpp/*.csv
+*.out
+
+# go
+main
