@@ -1,0 +1,7 @@
+*/*/*.csv
+*/*/*.out
+*/*/main
+
+create_file.sh
+README.md
+LISENSE
