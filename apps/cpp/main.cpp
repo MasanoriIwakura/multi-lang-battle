@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <time.h>
 #include <iomanip>
 
@@ -13,21 +12,24 @@ int main(int argc, char *argv[])
     double time, sum = 0;
     int count = 5;
 
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++)
+    {
         start = clock();
 
         ifstream ifs("/fixtures/sample.csv");
         ofstream ofs("./sample.csv");
 
-        string buffer;
-        while (getline(ifs, buffer)) {
-            ofs << buffer<< endl;
+        const int SIZE = 1024;
+        char buffer[SIZE];
+
+        while (ifs.getline(buffer, SIZE))
+        {
+            // ofs << buffer << endl; だとめっちゃ遅い
+            ofs << buffer << "\n";
         }
-        ifs >> buffer;
-        ofs << buffer;
 
         end = clock();
-        time = (double) (end - start) / CLOCKS_PER_SEC;
+        time = (double)(end - start) / CLOCKS_PER_SEC;
         cout << "Time Result: ";
         cout << fixed << setprecision(4) << time << endl;
         sum += time;
