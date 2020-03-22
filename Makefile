@@ -1,4 +1,5 @@
 build:
+	./create_file.sh
 	docker-compose build
 
 run_all: run_c run_cpp run_go

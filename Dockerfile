@@ -2,7 +2,7 @@ FROM ubuntu:18.04 as base
 LABEL maintainer "MasanoriIwakura"
 
 RUN apt-get update && apt-get upgrade -y \
-    && mkdir /fixtures
+    && apt-get install -y make
 
 COPY ./create_file.sh /
 RUN /create_file.sh
@@ -22,7 +22,7 @@ WORKDIR /apps/cpp/
 FROM base as go
 
 ENV GO_VERSION 1.14.1
-RUN apt-get install -y wget make && \
+RUN apt-get install -y wget && \
     wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
 ENV PATH $PATH:/usr/local/go/bin

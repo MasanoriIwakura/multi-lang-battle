@@ -9,6 +9,7 @@ services:
     command: "make build_run"
     volumes:
       - ./apps/c-lang:/apps/c-lang
+      - ./fixtures/:/fixtures
 
   cpp:
     build:
@@ -18,6 +19,7 @@ services:
     command: "make build_run"
     volumes:
       - ./apps/cpp:/apps/cpp
+      - ./fixtures/:/fixtures
 
   go:
     build:
@@ -27,3 +29,4 @@ services:
     command: "make build_run"
     volumes:
       - ./apps/go:/apps/go
+      - ./fixtures/:/fixtures
