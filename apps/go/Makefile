@@ -1,7 +1,7 @@
 build_run: build run
 
 build:
-	go build main.go
+	@go build main.go
 
 run:
-	./main
+	@./main
