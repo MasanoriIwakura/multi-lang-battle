@@ -7,3 +7,7 @@ sample.csv
 
 # go
 main
+
+# java
+*.class
+

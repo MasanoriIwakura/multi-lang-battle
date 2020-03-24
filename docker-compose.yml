@@ -30,3 +30,13 @@ services:
     volumes:
       - ./apps/go:/apps/go
       - ./fixtures/:/fixtures
+
+  java:
+    build:
+      context: .
+      target: java
+    image: multi-lang-battle-java
+    command: "make build_run"
+    volumes:
+      - ./apps/java:/apps/java
+      - ./fixtures/:/fixtures

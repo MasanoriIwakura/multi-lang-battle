@@ -24,4 +24,9 @@ RUN apt-get install -y wget && \
     tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
 ENV PATH $PATH:/usr/local/go/bin
 RUN go version
-WORKDIR /apps/go
+WORKDIR /apps/go/
+
+FROM base as java
+RUN apt-get install -y openjdk-8-jdk
+COPY ./apps/java /apps/java
+WORKDIR /apps/java/
