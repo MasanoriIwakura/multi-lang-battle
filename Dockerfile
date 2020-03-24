@@ -30,3 +30,23 @@ FROM base as java
 RUN apt-get install -y openjdk-8-jdk
 COPY ./apps/java /apps/java
 WORKDIR /apps/java/
+
+FROM base as python-build
+ENV DEBIAN_FRONTEND=noniteractive
+RUN apt-get -y install wget libbz2-dev libdb-dev \
+    libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
+    libncursesw5-dev libsqlite3-dev libssl-dev \
+    zlib1g-dev uuid-dev tk-dev
+
+RUN wget https://www.python.org/ftp/python/3.7.7/Python-3.7.7.tgz && tar xzf Python-3.7.7.tgz
+
+RUN cd Python-3.7.7 && ./configure --enable-shared && make && make install \
+    && sh -c "echo '/usr/local/lib' > /etc/ld.so.conf.d/custom_python3.conf" \
+    && ldconfig
+
+FROM base as python
+COPY --from=python-build /usr/local/ /usr/local/
+COPY --from=python-build /Python-3.7.7/libpython3.7m.so.1.0 /usr/lib/
+COPY ./apps/python /apps/python
+WORKDIR /apps/python/
+

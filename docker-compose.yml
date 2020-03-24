@@ -40,3 +40,13 @@ services:
     volumes:
       - ./apps/java:/apps/java
       - ./fixtures/:/fixtures
+
+  python:
+    build:
+      context: .
+      target: python
+    image: multi-lang-battle-python
+    command: "python3 main.py"
+    volumes:
+      - ./apps/python:/apps/python
+      - ./fixtures/:/fixtures
