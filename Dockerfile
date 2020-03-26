@@ -2,7 +2,7 @@ FROM ubuntu:18.04 as base
 LABEL maintainer "MasanoriIwakura"
 
 RUN apt-get update && apt-get upgrade -y \
-    && apt-get install -y make
+    && apt-get install -y make wget
 
 FROM base as c-common
 
@@ -19,8 +19,7 @@ WORKDIR /apps/cpp/
 FROM base as go
 
 ENV GO_VERSION 1.14.1
-RUN apt-get install -y wget && \
-    wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
+RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
 ENV PATH $PATH:/usr/local/go/bin
 RUN go version
@@ -33,7 +32,7 @@ WORKDIR /apps/java/
 
 FROM base as python-build
 ENV DEBIAN_FRONTEND=noniteractive
-RUN apt-get -y install wget libbz2-dev libdb-dev \
+RUN apt-get -y install libbz2-dev libdb-dev \
     libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
     libncursesw5-dev libsqlite3-dev libssl-dev \
     zlib1g-dev uuid-dev tk-dev
@@ -49,4 +48,18 @@ COPY --from=python-build /usr/local/ /usr/local/
 COPY --from=python-build /Python-3.7.7/libpython3.7m.so.1.0 /usr/lib/
 COPY ./apps/python /apps/python
 WORKDIR /apps/python/
+
+
+FROM base as ruby-build
+RUN apt-get install -y autoconf bison build-essential \
+    libssl-dev libyaml-dev libreadline6-dev zlib1g-dev \
+    libncurses5-dev libffi-dev libgdbm5 libgdbm-dev
+RUN wget https://cache.ruby-lang.org/pub/ruby/2.7/ruby-2.7.0.tar.gz && tar -zxvf ruby-2.7.0.tar.gz
+
+RUN cd ruby-2.7.0 && ./configure && make && make install
+
+FROM base as ruby
+COPY --from=ruby-build /usr/local/ /usr/local/
+COPY ./apps/ruby /apps/ruby
+WORKDIR /apps/ruby/
 

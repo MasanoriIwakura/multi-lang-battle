@@ -50,3 +50,13 @@ services:
     volumes:
       - ./apps/python:/apps/python
       - ./fixtures/:/fixtures
+
+  ruby:
+    build:
+      context: .
+      target: ruby
+    image: multi-lang-battle-ruby
+    command: "ruby main.rb"
+    volumes:
+      - ./apps/ruby:/apps/ruby
+      - ./fixtures/:/fixtures
