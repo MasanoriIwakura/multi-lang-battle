@@ -48,3 +48,22 @@ make run_cpp
 ```bash
 make run_go
 ```
+
+# Java
+
+```bash
+make run_java
+```
+
+# Python
+
+```bash
+make run_python
+```
+
+# Ruby
+
+```bash
+make run_ruby
+```
+
