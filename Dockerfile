@@ -26,7 +26,7 @@ RUN go version
 WORKDIR /apps/go/
 
 FROM base as java
-RUN apt-get install -y openjdk-8-jdk
+RUN apt-get install -y openjdk-11-jdk
 COPY ./apps/java /apps/java
 WORKDIR /apps/java/
 
