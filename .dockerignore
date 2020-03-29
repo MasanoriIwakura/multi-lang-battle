@@ -1,8 +1,17 @@
-*/*/*.csv
+# C/C++
 */*/*.out
-*/*/*.class
-*/*/main
 
+# Java
+apps/java/main.class
+
+# Go
+apps/golang/main
+
+# Scala
+apps/scala/target
+
+# commons
 create_file.sh
 README.md
 LISENSE
+*/*/*.csv

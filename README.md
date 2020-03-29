@@ -67,3 +67,8 @@ make run_python
 make run_ruby
 ```
 
+# Scala
+
+```bash
+make run_scala
+```

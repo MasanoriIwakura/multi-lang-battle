@@ -60,3 +60,13 @@ services:
     volumes:
       - ./apps/ruby:/apps/ruby
       - ./fixtures/:/fixtures
+
+  scala:
+    build:
+      context: .
+      target: scala
+    image: multi-lang-battle-scala
+    command: "scala main.scala"
+    volumes:
+      - ./apps/scala:/apps/scala
+      - ./fixtures/:/fixtures

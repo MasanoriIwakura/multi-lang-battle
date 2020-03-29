@@ -22,7 +22,6 @@ ENV GO_VERSION 1.14.1
 RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
 ENV PATH $PATH:/usr/local/go/bin
-RUN go version
 WORKDIR /apps/go/
 
 FROM base as java
@@ -62,4 +61,17 @@ FROM base as ruby
 COPY --from=ruby-build /usr/local/ /usr/local/
 COPY ./apps/ruby /apps/ruby
 WORKDIR /apps/ruby/
+
+FROM base as scala
+WORKDIR /usr/local/lib/
+RUN apt-get install -y gnupg curl && \
+    echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
+    curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | apt-key add && \
+    apt-get update && apt-get install -y sbt openjdk-11-jdk && \
+    wget https://downloads.lightbend.com/scala/2.13.1/scala-2.13.1.tgz && tar xzf scala-2.13.1.tgz && \
+    ln -s scala-2.13.1 scala
+ENV SCALA_HOME=/usr/local/lib/scala
+ENV PATH $PATH:$SCALA_HOME/bin
+COPY ./apps/scala /apps/scala
+WORKDIR /apps/scala
 

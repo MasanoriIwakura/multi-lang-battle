@@ -1,4 +1,4 @@
-# common
+# commons
 sample.csv
 
 # c-lang
@@ -11,3 +11,5 @@ main
 # java
 *.class
 
+# scala
+apps/scala/target
