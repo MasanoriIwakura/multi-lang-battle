@@ -4,6 +4,10 @@ LABEL maintainer "MasanoriIwakura"
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y make wget
 
+
+#############################
+# C Language / C++
+#############################
 FROM base as c-common
 
 RUN apt-get install -y apt-utils build-essential gcc
@@ -16,6 +20,9 @@ FROM c-common as cpp
 COPY ./apps/cpp /apps/cpp
 WORKDIR /apps/cpp/
 
+#############################
+# Golang
+#############################
 FROM base as go
 
 ENV GO_VERSION 1.14.1
@@ -24,11 +31,17 @@ RUN wget https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz && \
 ENV PATH $PATH:/usr/local/go/bin
 WORKDIR /apps/go/
 
+#############################
+# Java
+#############################
 FROM base as java
 RUN apt-get install -y openjdk-11-jdk
 COPY ./apps/java /apps/java
 WORKDIR /apps/java/
 
+#############################
+# Python
+#############################
 FROM base as python-build
 ENV DEBIAN_FRONTEND=noniteractive
 RUN apt-get -y install libbz2-dev libdb-dev \
@@ -48,7 +61,9 @@ COPY --from=python-build /Python-3.7.7/libpython3.7m.so.1.0 /usr/lib/
 COPY ./apps/python /apps/python
 WORKDIR /apps/python/
 
-
+#############################
+# Ruby 
+#############################
 FROM base as ruby-build
 RUN apt-get install -y autoconf bison build-essential \
     libssl-dev libyaml-dev libreadline6-dev zlib1g-dev \
@@ -62,9 +77,12 @@ COPY --from=ruby-build /usr/local/ /usr/local/
 COPY ./apps/ruby /apps/ruby
 WORKDIR /apps/ruby/
 
+#############################
+# Scala
+#############################
 FROM base as scala
 WORKDIR /usr/local/lib/
-RUN apt-get install -y gnupg curl && \
+RUN apt-get install -y gnupg && \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
     curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | apt-key add && \
     apt-get update && apt-get install -y sbt openjdk-11-jdk && \
@@ -74,4 +92,3 @@ ENV SCALA_HOME=/usr/local/lib/scala
 ENV PATH $PATH:$SCALA_HOME/bin
 COPY ./apps/scala /apps/scala
 WORKDIR /apps/scala
-
