@@ -21,11 +21,10 @@ def main
     t = e - start
     sum += t
 
-    puts "Time Result: #{t}"
+    printf("Time Result: %.4f\n", t)
   end
 
-  puts "Ruby Average: #{sum / count}"
+  printf("Ruby Average: %.4f\n", sum / count)
 end
 
 main
-

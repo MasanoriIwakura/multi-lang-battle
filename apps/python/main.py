@@ -18,9 +18,9 @@ def main():
         end = time.time()
         result = end - start
         sum += result
-        print("Time Result: {0}".format(result))
+        print("Time Result: %.4f" %(result))
 
-    print("Python Average: {0}".format(sum / count))
+    print("Python Average: %.4f" %(sum / count))
 
 if __name__ == '__main__':
     main()
