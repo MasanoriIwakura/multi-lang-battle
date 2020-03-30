@@ -6,6 +6,7 @@ sample.csv
 *.out
 
 # go
+# vlang
 main
 
 # java

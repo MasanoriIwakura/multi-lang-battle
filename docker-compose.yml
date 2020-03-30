@@ -70,3 +70,14 @@ services:
     volumes:
       - ./apps/scala:/apps/scala
       - ./fixtures/:/fixtures
+
+  vlang:
+    build:
+      context: .
+      target: vlang
+    image: multi-lang-battle-vlang
+    command: "make build_run"
+    volumes:
+      - ./apps/vlang:/apps/vlang
+      - ./apps/cpp:/apps/cpp
+      - ./fixtures/:/fixtures

@@ -2,7 +2,7 @@ FROM ubuntu:18.04 as base
 LABEL maintainer "MasanoriIwakura"
 
 RUN apt-get update && apt-get upgrade -y \
-    && apt-get install -y make wget
+    && apt-get install -y make wget curl
 
 
 #############################
@@ -92,3 +92,14 @@ ENV SCALA_HOME=/usr/local/lib/scala
 ENV PATH $PATH:$SCALA_HOME/bin
 COPY ./apps/scala /apps/scala
 WORKDIR /apps/scala
+
+#############################
+# V Language
+#############################
+FROM c-common as vlang
+WORKDIR /opt/vlang
+RUN apt-get install -y git && \
+    git clone https://github.com/vlang/v.git && \
+    cd v && make && ln -s /opt/vlang/v/v /usr/local/bin/v
+
+WORKDIR /apps/vlang
