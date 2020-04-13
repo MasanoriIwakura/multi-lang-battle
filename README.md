@@ -34,6 +34,7 @@ Result example
 ```bash
 C-lang Average: 6.2962
 C++ Average: 6.0538
+C# Average: 17.1798
 Golang Average: 10.3966
 Java Average: 21.0840
 Python Average: 32.6949
@@ -51,6 +52,12 @@ make run_c
 
 ```bash
 make run_cpp
+```
+
+# C#
+
+```bash
+make run_csharp
 ```
 
 # Golang
