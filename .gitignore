@@ -5,6 +5,10 @@ sample.csv
 # cpp
 *.out
 
+# csharp
+obj
+bin
+
 # go
 # vlang
 main

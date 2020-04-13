@@ -21,6 +21,16 @@ services:
       - ./apps/cpp:/apps/cpp
       - ./fixtures/:/fixtures
 
+  csharp:
+    build:
+      context: .
+      target: csharp
+    image: multi-lang-battle-csharp
+    command: "make run"
+    volumes:
+      - ./apps/csharp:/apps/csharp
+      - ./fixtures/:/fixtures
+
   go:
     build:
       context: .

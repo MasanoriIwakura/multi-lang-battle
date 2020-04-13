@@ -10,6 +10,9 @@ run_c:
 run_cpp:
 	@echo "** C++ **" && docker-compose run --rm cpp && echo
 
+run_csharp:
+	@echo "** C# **" && docker-compose run --rm csharp && echo
+
 run_go:
 	@echo "** Golang **" && docker-compose run --rm go && echo
 

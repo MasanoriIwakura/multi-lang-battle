@@ -21,6 +21,19 @@ COPY ./apps/cpp /apps/cpp
 WORKDIR /apps/cpp/
 
 #############################
+# C#
+#############################
+FROM base as csharp
+RUN wget https://download.visualstudio.microsoft.com/download/pr/f65a8eb0-4537-4e69-8ff3-1a80a80d9341/cc0ca9ff8b9634f3d9780ec5915c1c66/dotnet-sdk-3.1.201-linux-x64.tar.gz && \
+    mkdir -p /usr/local/dotnet && tar zxf dotnet-sdk-3.1.201-linux-x64.tar.gz -C /usr/local/dotnet
+ENV DOTNET_ROOT /usr/local/dotnet
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT true
+ENV PATH $PATH:/usr/local/dotnet
+COPY ./apps/csharp /apps/csharp
+WORKDIR /apps/csharp/
+RUN dotnet build csharp.csproj
+
+#############################
 # Golang
 #############################
 FROM base as go
